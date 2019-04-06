@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[test]]></title>
+    <url>%2F2019%2F04%2F06%2Ftest%2F</url>
+    <content type="text"><![CDATA[[TOC] 大纲plethora n.过多，过剩 /&#39;pleθ(ə)rə/ ple:full (plenty of 许多) replete a.充满的 be ~ with (re:again) deplete v.耗尽 (de:not) provident a.有远见的, 未雨绸缪的 /&#39;prɒvɪd(ə)nt/ vis/vid : to see (visit/visible) envisage v.展望,设想 (en:to) invidious a.招人讨厌的 (in:not 不愿意看见你–烦银) /ɪn&#39;vɪdɪəs/ improvise v.即兴创作 (in:not pro:前 , 不用之前看) /&#39;ɪmprəvaɪz/ 字母变化规律 元音之间可以互换 a,e,i,o,u,y clarity n.清楚,明晰 —–clear nominate v.提名 ——name + in + ate gild v.镀金 ——gold grisly a.可怕的, 毛骨悚然的 —–gray +sly fetter n.脚镣 v.束缚 —–feet 辅音之间的互换 p - b t - d k - g - c - qu f - v s - z - x - th 12345reimburse v.报销; 偿还 re:back + in + pursesunder v.分开, 分裂 thunder 雷ascetic a.苦行的, 禁欲的 athletic : 古希腊人竞技前禁欲masquerade n.假面舞会 mask : 面具miscellaneous a.各种各样的，混杂的 mix : 混合 字母 g , h 的脱落 sheeny a.光亮的, 有关泽的 –shine : 闪耀–sun feign v.假装 —–feint v./n 假装,佯攻 arduous a.辛苦的, 费力的 —– hard + uous 形近字母的变化 m - n u - v - w 123lurk v.潜伏 ---lower + krenovate v.翻新 ---re + new + ateprudent a.谨慎的 ---provident 固定转换 s - t - d p - b - f - v - ph 1234conclude ~ conclusionamorphous a.无形状的 a:not + morph:form +ousdissent v.不同意 ---dis + sense (感觉不同)pyromania n.纵火狂 pyro---firemania 同源词之间的联系：读音、拼写、意思lesson 1 consecrate v.供奉，奉为圣神 1234567sacr--sacred/holy(sacrifice)sacrilegedesecrateexecrate**devoteprofane(谐：泼粪) evoke v.唤起，引起 12345678910vok/voc -- to call(voice)convoke [喊到一起来]revoke re:backequivocal equal(相等的) + voc 说话声音相似/相等invoke in:to 加强provoke 在面前喊 vociferous voice fer: to carry**fueltrigger bereave v.使丧失；剥夺 be:to 加强 a bereave mother 失去孩子的母亲 be bereft of 失去…… 12345678910rav/rap 抢夺(rob)rapacious acious adj.后缀 ...多rapt enraptureravage age n.后缀ravish ish v.后缀**deprivelootdespoil abdomen n.腹部，肚子 ab+do+men 做一个正真的男人，人到中年肚子凸显 12belly (记：ball)paunch (pocket) obsolete a.做废的，过时的 12345ob: against sol: solere(be used to)联想：ob+sole 唯一 只剩下一个过时的**outmoded a.过时的antiquated antique 古董的]]></content>
+      <categories>
+        <category>英语</category>
+      </categories>
+      <tags>
+        <tag>词汇</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Hello World]]></title>
     <url>%2F2019%2F04%2F06%2Fhello-world%2F</url>
     <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
