@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, yeye">
+  <meta name="keywords" content="dfs,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="posts">
-<meta property="og:url" content="http://zhanyeye2018.cn/posts/index.html">
+<meta name="description" content="可行性剪枝搜索过程中，一旦发现某些状态无论如何都不能找到最终解，就可以将其“剪枝”了 123456789101112131415161718192021222324252627282930313233//从1 ~ 30 选出8个数，使得和值为200#include &amp;lt;iostream&amp;gt;using namespace std;int n, k, sum, ans;int a[40];vo">
+<meta name="keywords" content="dfs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深搜的剪枝策略">
+<meta property="og:url" content="http://zhanyeye2018.cn/2019/04/11/深搜的剪枝策略/index.html">
 <meta property="og:site_name" content="晔晔的博客">
+<meta property="og:description" content="可行性剪枝搜索过程中，一旦发现某些状态无论如何都不能找到最终解，就可以将其“剪枝”了 123456789101112131415161718192021222324252627282930313233//从1 ~ 30 选出8个数，使得和值为200#include &amp;lt;iostream&amp;gt;using namespace std;int n, k, sum, ans;int a[40];vo">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-07T00:06:53.800Z">
+<meta property="og:updated_time" content="2019-04-11T03:13:21.150Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="posts">
+<meta name="twitter:title" content="深搜的剪枝策略">
+<meta name="twitter:description" content="可行性剪枝搜索过程中，一旦发现某些状态无论如何都不能找到最终解，就可以将其“剪枝”了 123456789101112131415161718192021222324252627282930313233//从1 ~ 30 选出8个数，使得和值为200#include &amp;lt;iostream&amp;gt;using namespace std;int n, k, sum, ans;int a[40];vo">
 
 
 
@@ -116,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://zhanyeye2018.cn/posts/">
+  <link rel="canonical" href="http://zhanyeye2018.cn/2019/04/11/深搜的剪枝策略/">
 
 
 
 
 
-  <title>posts | 晔晔的博客</title>
+  <title>深搜的剪枝策略 | 晔晔的博客</title>
   
 
 
@@ -279,33 +283,173 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhanyeye2018.cn/2019/04/11/深搜的剪枝策略/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhanyeye">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晔晔的博客">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">posts</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">深搜的剪枝策略</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-11T10:26:59+08:00">
+                2019-04-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h6 id="可行性剪枝"><a href="#可行性剪枝" class="headerlink" title="可行性剪枝"></a>可行性剪枝</h6><p>搜索过程中，一旦发现某些状态无论如何都不能找到最终解，就可以将其“剪枝”了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从1 ~ 30 选出8个数，使得和值为200</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n, k, sum, ans;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">40</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> cnt, <span class="keyword">int</span> s)</span> </span>&#123;<span class="comment">//i: 数组索引位置； cnt: 以选数据个数; s: 和</span></span><br><span class="line">    <span class="keyword">if</span> (cnt &gt; k) &#123;  <span class="comment">//可行性剪枝，选择数的个数不可能超过k</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (s &gt; sum) &#123;  <span class="comment">//可行性剪枝,s大于sum的不用考虑</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i == n) &#123;</span><br><span class="line">        <span class="keyword">if</span> (cnt == k &amp;&amp; s == sum) &#123;</span><br><span class="line">            ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    dfs(i + <span class="number">1</span>, cnt, s);  <span class="comment">//不选第i个数</span></span><br><span class="line">    dfs(i + <span class="number">1</span>, cnt + <span class="number">1</span>, s + a[i]);  <span class="comment">//选第i个数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="number">30</span>;</span><br><span class="line">    k = <span class="number">8</span>;</span><br><span class="line">    sum = <span class="number">200</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">30</span>; i++) &#123;</span><br><span class="line">        a[i] = i + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ans = <span class="number">0</span>;</span><br><span class="line">    dfs(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="最优性剪枝"><a href="#最优性剪枝" class="headerlink" title="最优性剪枝"></a>最优性剪枝</h6><p>最优解问题，通常可以用最优性剪枝，如在求解迷宫最短路的时候，若发现当前的步数已经超过了当前最优解，那从当前状态开始的搜索都是多余的</p>
+<p>在搜索是否有可行解的过程中，一旦找到了一组可行解，后面的搜索都不必再进行了，（最优性剪枝的特例）</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dfs/" rel="tag"># dfs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/08/matlab学习/" rel="next" title="matlab学习">
+                <i class="fa fa-chevron-left"></i> matlab学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/13/matlab-Chap1/" rel="prev" title="Chap1 MATLAB 入门基础">
+                Chap1 MATLAB 入门基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -338,8 +482,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -421,6 +574,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#可行性剪枝"><span class="nav-number">1.</span> <span class="nav-text">可行性剪枝</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#最优性剪枝"><span class="nav-number">2.</span> <span class="nav-text">最优性剪枝</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
