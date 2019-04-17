@@ -3,7 +3,13 @@
   <entry>
     <title><![CDATA[翻译练习]]></title>
     <url>%2F2019%2F04%2F17%2F%E7%BF%BB%E8%AF%91%E7%BB%83%E4%B9%A0%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[test]]></content>
+      <categories>
+        <category>英语</category>
+      </categories>
+      <tags>
+        <tag>翻译</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[翻译]]></title>
