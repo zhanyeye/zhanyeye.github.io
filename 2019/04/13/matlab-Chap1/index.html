@@ -79,23 +79,23 @@
 
 
 
-<meta name="description" content="数据的输入123456% 换行分号，行末分号A = [1 2 3; 4 5 6; 7 8 10]% 加减乘除，幂a=29*(2+23/3)-5^2% 返回值=函数名（参数1，参数2，……）a=magic(3) Tab键补全功能，语法提示，错误纠正12345678910111213141516171819&amp;gt;&amp;gt; Sin(pi) Did you mean:&amp;gt;&amp;gt; sin(pi)&amp;g">
+<meta name="description" content="数据的输入123456% 换行分号，行末分号A = [1 2 3; 4 5 6; 7 8 10]% 加减乘除，幂a=29*(2+23/3)-5^2% 返回值=函数名（参数1，参数2，……）a=magic(3)">
 <meta name="keywords" content="matlab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chap1 MATLAB 入门基础">
-<meta property="og:url" content="http://zhanyeye2018.cn/2019/04/13/matlab-Chap1/index.html">
+<meta property="og:url" content="https://zhanyeye2018.cn/2019/04/13/matlab-Chap1/index.html">
 <meta property="og:site_name" content="晔晔的博客">
-<meta property="og:description" content="数据的输入123456% 换行分号，行末分号A = [1 2 3; 4 5 6; 7 8 10]% 加减乘除，幂a=29*(2+23/3)-5^2% 返回值=函数名（参数1，参数2，……）a=magic(3) Tab键补全功能，语法提示，错误纠正12345678910111213141516171819&amp;gt;&amp;gt; Sin(pi) Did you mean:&amp;gt;&amp;gt; sin(pi)&amp;g">
+<meta property="og:description" content="数据的输入123456% 换行分号，行末分号A = [1 2 3; 4 5 6; 7 8 10]% 加减乘除，幂a=29*(2+23/3)-5^2% 返回值=函数名（参数1，参数2，……）a=magic(3)">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://zhanyeye2018.cn/images/1555136189103.png">
-<meta property="og:image" content="http://zhanyeye2018.cn/images/1555136234814.png">
-<meta property="og:image" content="http://zhanyeye2018.cn/images/1555136644305.png">
-<meta property="og:image" content="http://zhanyeye2018.cn/images/1555137533427.png">
-<meta property="og:updated_time" content="2019-04-13T08:25:03.348Z">
+<meta property="og:image" content="https://zhanyeye2018.cn/images/1555136189103.png">
+<meta property="og:image" content="https://zhanyeye2018.cn/images/1555136234814.png">
+<meta property="og:image" content="https://zhanyeye2018.cn/images/1555136644305.png">
+<meta property="og:image" content="https://zhanyeye2018.cn/images/1555137533427.png">
+<meta property="og:updated_time" content="2019-04-18T14:19:04.186Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chap1 MATLAB 入门基础">
-<meta name="twitter:description" content="数据的输入123456% 换行分号，行末分号A = [1 2 3; 4 5 6; 7 8 10]% 加减乘除，幂a=29*(2+23/3)-5^2% 返回值=函数名（参数1，参数2，……）a=magic(3) Tab键补全功能，语法提示，错误纠正12345678910111213141516171819&amp;gt;&amp;gt; Sin(pi) Did you mean:&amp;gt;&amp;gt; sin(pi)&amp;g">
-<meta name="twitter:image" content="http://zhanyeye2018.cn/images/1555136189103.png">
+<meta name="twitter:description" content="数据的输入123456% 换行分号，行末分号A = [1 2 3; 4 5 6; 7 8 10]% 加减乘除，幂a=29*(2+23/3)-5^2% 返回值=函数名（参数1，参数2，……）a=magic(3)">
+<meta name="twitter:image" content="https://zhanyeye2018.cn/images/1555136189103.png">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <link rel="canonical" href="http://zhanyeye2018.cn/2019/04/13/matlab-Chap1/">
+  <link rel="canonical" href="https://zhanyeye2018.cn/2019/04/13/matlab-Chap1/">
 
 
 
@@ -300,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhanyeye2018.cn/2019/04/13/matlab-Chap1/">
+    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/13/matlab-Chap1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhanyeye">
@@ -390,6 +390,7 @@
 
       
         <h6 id="数据的输入"><a href="#数据的输入" class="headerlink" title="数据的输入"></a>数据的输入</h6><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 换行分号，行末分号</span></span><br><span class="line">A = [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>; <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span> <span class="number">10</span>]</span><br><span class="line"><span class="comment">% 加减乘除，幂</span></span><br><span class="line">a=<span class="number">29</span>*(<span class="number">2</span>+<span class="number">23</span>/<span class="number">3</span>)<span class="number">-5</span>^<span class="number">2</span></span><br><span class="line"><span class="comment">% 返回值=函数名（参数1，参数2，……）</span></span><br><span class="line">a=<span class="built_in">magic</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h6 id="Tab键补全功能，语法提示，错误纠正"><a href="#Tab键补全功能，语法提示，错误纠正" class="headerlink" title="Tab键补全功能，语法提示，错误纠正"></a>Tab键补全功能，语法提示，错误纠正</h6><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; Sin(<span class="built_in">pi</span>) </span><br><span class="line">Did you <span class="built_in">mean</span>:</span><br><span class="line">&gt;&gt; <span class="built_in">sin</span>(<span class="built_in">pi</span>)</span><br><span class="line"></span><br><span class="line">&gt;&gt; a=[<span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">9</span>;<span class="number">16</span> <span class="number">25</span> <span class="number">36</span> <span class="number">49</span>];</span><br><span class="line">&gt;&gt; a([<span class="number">3</span> <span class="number">6</span>])=<span class="built_in">nan</span>;  <span class="comment">%将数组第6个元素和第7个元素赋为NaN, 注意数组元素下标是竖着数的</span></span><br><span class="line">&gt;&gt; <span class="built_in">mean</span>(a)  <span class="comment">%求平均数，默认是对对第一维度，即列 =&gt; mean(a, 1)</span></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line">    <span class="number">8.5000</span>       NaN       NaN   <span class="number">29.0000</span></span><br><span class="line">    </span><br><span class="line">&gt;&gt; <span class="built_in">mean</span>(a,<span class="string">'omitnan'</span>)  <span class="comment">%忽略NaN</span></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line">    <span class="number">8.5000</span>   <span class="number">25.0000</span>    <span class="number">4.0000</span>   <span class="number">29.0000</span></span><br><span class="line">    </span><br><span class="line">&gt;&gt; <span class="built_in">mean</span>(a,<span class="number">2</span>,<span class="string">'omitnan'</span>)   <span class="comment">%对第二维度求平均值，忽略NaN</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">ans</span> =</span><br><span class="line">    <span class="number">4.6667</span></span><br><span class="line">   <span class="number">30.0000</span></span><br></pre></td></tr></table></figure>
 <h6 id="科学计数法"><a href="#科学计数法" class="headerlink" title="科学计数法"></a>科学计数法</h6><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a=<span class="number">10000000000000000000000000000000000000</span></span><br><span class="line">a =</span><br><span class="line">   <span class="number">1.0000e+37</span></span><br></pre></td></tr></table></figure>
 <h6 id="相对精度"><a href="#相对精度" class="headerlink" title="相对精度"></a>相对精度</h6><p>eps  =  2.2204e-16</p>
@@ -638,7 +639,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
