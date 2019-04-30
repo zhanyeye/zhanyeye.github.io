@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="机器学习,">
+  <meta name="keywords" content="图,">
 
 
 
@@ -79,20 +79,25 @@
 
 
 
-<meta name="description" content="绪论：初识机器学习T 解决某一任务T E 从经验E中学习 P 进行某一性能度量 监督学习算法：我们给算法一个数据集，其中包含了正确答案，算法的目的就是给出更多的正确答案，  回归问题(Regression problem)：我们想要预测连续的数值输出  如：预测房价   分类问题(Classification problem)：设法预测一个离散值输出 0 或 1 (或者2个以上的输出值)  使用了">
-<meta name="keywords" content="机器学习">
+<meta name="description" content="单源最短路问题在带权图 G=(V,E) 中，每条边都有一个权值 wi，即边的长度。路径的长度为路径上所有边权之和。单源最短路问题是指：求源点 s 到图中其余各顶点的最短路径。 如果用我们之前学习的 dfs 来解决单源最短路问题，效率上会很慢，能解决的问题的数据规模非常小。 而 bfs 能解决的最短路问题只限制在边权为 1 的图上。对于边权不同的图，利用 bfs 求解最短路是错误的。  解决单源最短">
+<meta name="keywords" content="图">
 <meta property="og:type" content="article">
-<meta property="og:title" content="绪论：初识机器学习">
-<meta property="og:url" content="https://zhanyeye2018.cn/2019/04/19/19-04-19 绪论：初识机器学习/index.html">
+<meta property="og:title" content="19-04-28 Dijkstra 最短路径算法">
+<meta property="og:url" content="https://zhanyeye2018.cn/2019/04/28/19-04-28-Dijkstra-最短路径算法/index.html">
 <meta property="og:site_name" content="晔晔的博客">
-<meta property="og:description" content="绪论：初识机器学习T 解决某一任务T E 从经验E中学习 P 进行某一性能度量 监督学习算法：我们给算法一个数据集，其中包含了正确答案，算法的目的就是给出更多的正确答案，  回归问题(Regression problem)：我们想要预测连续的数值输出  如：预测房价   分类问题(Classification problem)：设法预测一个离散值输出 0 或 1 (或者2个以上的输出值)  使用了">
+<meta property="og:description" content="单源最短路问题在带权图 G=(V,E) 中，每条边都有一个权值 wi，即边的长度。路径的长度为路径上所有边权之和。单源最短路问题是指：求源点 s 到图中其余各顶点的最短路径。 如果用我们之前学习的 dfs 来解决单源最短路问题，效率上会很慢，能解决的问题的数据规模非常小。 而 bfs 能解决的最短路问题只限制在边权为 1 的图上。对于边权不同的图，利用 bfs 求解最短路是错误的。  解决单源最短">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ws1.sinaimg.cn/large/007y3hakly1g27ptchod8j307e06uq3c.jpg">
-<meta property="og:updated_time" content="2019-04-19T02:44:19.992Z">
+<meta property="og:image" content="https://res.jisuanke.com/img/upload/20170428/15072f3ce9f3e53579a6c2e02d87ef57d56cb3fe.png">
+<meta property="og:image" content="https://res.jisuanke.com/img/upload/20170428/02b208d277615bebf57d9a796e46bc96900181a3.png">
+<meta property="og:image" content="https://res.jisuanke.com/img/upload/20170428/a310ffeebb4ebd561660aeed7cf81db5448b98cc.png">
+<meta property="og:image" content="https://res.jisuanke.com/img/upload/20170428/18bf6b9ce78f61fa85ce4b6563b8d3508b2b0470.png">
+<meta property="og:image" content="https://res.jisuanke.com/img/upload/20170428/39744d7c33d595558c4c79205c7778b3ae476a01.png">
+<meta property="og:image" content="https://res.jisuanke.com/img/upload/20170428/ced8460a27686319529c898a1c7daec893bba313.png">
+<meta property="og:updated_time" content="2019-04-29T13:58:21.630Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="绪论：初识机器学习">
-<meta name="twitter:description" content="绪论：初识机器学习T 解决某一任务T E 从经验E中学习 P 进行某一性能度量 监督学习算法：我们给算法一个数据集，其中包含了正确答案，算法的目的就是给出更多的正确答案，  回归问题(Regression problem)：我们想要预测连续的数值输出  如：预测房价   分类问题(Classification problem)：设法预测一个离散值输出 0 或 1 (或者2个以上的输出值)  使用了">
-<meta name="twitter:image" content="https://ws1.sinaimg.cn/large/007y3hakly1g27ptchod8j307e06uq3c.jpg">
+<meta name="twitter:title" content="19-04-28 Dijkstra 最短路径算法">
+<meta name="twitter:description" content="单源最短路问题在带权图 G=(V,E) 中，每条边都有一个权值 wi，即边的长度。路径的长度为路径上所有边权之和。单源最短路问题是指：求源点 s 到图中其余各顶点的最短路径。 如果用我们之前学习的 dfs 来解决单源最短路问题，效率上会很慢，能解决的问题的数据规模非常小。 而 bfs 能解决的最短路问题只限制在边权为 1 的图上。对于边权不同的图，利用 bfs 求解最短路是错误的。  解决单源最短">
+<meta name="twitter:image" content="https://res.jisuanke.com/img/upload/20170428/15072f3ce9f3e53579a6c2e02d87ef57d56cb3fe.png">
 
 
 
@@ -122,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="https://zhanyeye2018.cn/2019/04/19/19-04-19 绪论：初识机器学习/">
+  <link rel="canonical" href="https://zhanyeye2018.cn/2019/04/28/19-04-28-Dijkstra-最短路径算法/">
 
 
 
 
 
-  <title>绪论：初识机器学习 | 晔晔的博客</title>
+  <title>19-04-28 Dijkstra 最短路径算法 | 晔晔的博客</title>
   
 
 
@@ -297,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/19/19-04-19 绪论：初识机器学习/">
+    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/28/19-04-28-Dijkstra-最短路径算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhanyeye">
@@ -314,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">绪论：初识机器学习</h1>
+          <h1 class="post-title" itemprop="name headline">19-04-28 Dijkstra 最短路径算法</h1>
         
 
         <div class="post-meta">
@@ -326,8 +331,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-19T10:42:25+08:00">
-                2019-04-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-28T18:00:12+08:00">
+                2019-04-28
               </time>
             
 
@@ -349,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/机器学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">机器学习笔记</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -386,35 +391,62 @@
       
 
       
-        <h5 id="绪论：初识机器学习"><a href="#绪论：初识机器学习" class="headerlink" title="绪论：初识机器学习"></a>绪论：初识机器学习</h5><p>T 解决某一任务T</p>
-<p>E 从经验E中学习</p>
-<p>P 进行某一性能度量</p>
-<h6 id="监督学习算法："><a href="#监督学习算法：" class="headerlink" title="监督学习算法："></a>监督学习算法：</h6><p>我们给算法一个数据集，其中包含了正确答案，算法的目的就是给出更多的正确答案，</p>
-<ul>
-<li><p>回归问题(Regression problem)：我们想要预测连续的数值输出</p>
-<ul>
-<li>如：预测房价</li>
-</ul>
+        <h6 id="单源最短路问题"><a href="#单源最短路问题" class="headerlink" title="单源最短路问题"></a>单源最短路问题</h6><p>在带权图 <em>G</em>=(<em>V</em>,<em>E</em>) 中，每条边都有一个权值 <em>wi</em>，即边的长度。路径的长度为路径上所有边权之和。单源最短路问题是指：求源点 <em>s</em> 到图中其余各顶点的最短路径。</p>
+<p>如果用我们之前学习的 dfs 来解决单源最短路问题，效率上会很慢，能解决的问题的数据规模非常小。</p>
+<p>而 bfs 能解决的最短路问题只限制在边权为 1 的图上。对于边权不同的图，利用 bfs 求解最短路是错误的。</p>
+<blockquote>
+<p>解决单源最短路径问题常用 Dijkstra 算法，用于计算一个顶点到其他所有顶点的最短路径。Dijkstra 算法的主要特点是以起点为中心，逐层向外扩展（这一点类似于 bfs，但是不同的是，bfs 每次扩展一个层，但是 Dijkstra 每次只会扩展一个点），每次都会取一个最近点继续扩展，直到取完所有点为止</p>
+</blockquote>
+<p>非负权图 , 贪心思想</p>
+<h6 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h6><p>我们定义带权图 <em>G</em> 所有顶点的集合为 <em>V</em>，接着我们再定义<strong>已确定从源点出发的最短路径的顶点集合</strong>为 <em>U</em>，初始集合 <em>U</em> 为空，记<strong>从源点 <em>s</em> 出发到每个顶点 <em>v</em> 的距离</strong>为 <em>dist_v</em>，初始 <em>dist_s</em>=0，其他<em>dist_v</em>为∞。接着执行以下操作：</p>
+<ol>
+<li>从 <em>V</em>−<em>U</em> 中找出一个距离源点最近的顶点 <em>v</em>，将 <em>v</em> 加入集合 <em>U</em>。</li>
+<li>并用 dist_v 和点 <em>v</em> 连出的边来更新和 <em>v</em> 相邻的、不在集合 <em>U</em> 中的顶点的 dist，这一步称为松弛操作。</li>
+<li>重复步骤 1 和 2，直到 V=U或找不出一个从 <em>s</em> 出发有路径到达的顶点，算法结束。</li>
+</ol>
+<p>如果最后V !=U，说明有顶点无法从源点到达；否则每个 dist_i表示从 <em>s</em> 出发到顶点 <em>i</em> 的最短距离。</p>
+<p>Dijkstra 算法的时间复杂度为O(<em>V</em>^2)，其中 <em>V</em> 表示顶点的数量。</p>
+<blockquote>
+<p> 算法演示</p>
+<p>接下来，我们用一个例子来说明这个算法。</p>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/15072f3ce9f3e53579a6c2e02d87ef57d56cb3fe.png" alt="img"></p>
+<p>初始每个顶点的 dist 设置为无穷大 inf，源点 <em>M</em> 的 dist_M 设置为 0。</p>
+<ol>
+<li><p>当前<em>U</em>=∅，<em>V</em>−<em>U</em> 中 dist 最小的顶点是 M。</p>
 </li>
-<li><p>分类问题(Classification problem)：设法预测一个离散值输出 0 或 1 (或者2个以上的输出值)</p>
-<ul>
-<li>使用了特征或者说属性</li>
-<li>可能会有处理很多特征的算法</li>
-<li>如：医疗数据预测肿瘤</li>
-</ul>
+<li><p>从顶点 M 出发，更新相邻点的 dist。</p>
 </li>
-</ul>
-<h6 id="无监督学习（unsupervised）："><a href="#无监督学习（unsupervised）：" class="headerlink" title="无监督学习（unsupervised）："></a>无监督学习（unsupervised）：</h6><p>对于给定的数据集，无监督学习算法可能判定，该数据集包含两个不同的簇，就是聚类算法</p>
-<ul>
-<li>数据都有相同的标签或者都没有标签</li>
-<li>聚类算法的例子：Google news, 基因组学，大型计算机集群（找出那些机器趋向于协同工作），社交网络分析（判断哪些人相互认识，在同一个社交圈），市场细分应用 （更具客户信息，将客户分到不同的细分市场）， 天文数据分析</li>
-<li>我们只告诉算法这儿有一堆数据，不知道这些数据是是什么，是什么类型，自动找出这些数据的类型，按得到的类型把这些个体分成簇。</li>
-<li>没有把数据集的正确答案给算法</li>
-</ul>
-<p><img src="https://ws1.sinaimg.cn/large/007y3hakly1g27ptchod8j307e06uq3c.jpg" alt></p>
-<ul>
-<li>鸡尾酒会问题</li>
-</ul>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/02b208d277615bebf57d9a796e46bc96900181a3.png" alt></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>}，</p>
+<ol>
+<li><em>V</em>−<em>U</em> 中 dist 最小的顶点是 <em>W</em>。</li>
+<li>从 <em>W</em> 出发，更新相邻点的 dist。</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/a310ffeebb4ebd561660aeed7cf81db5448b98cc.png" alt="img"></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>,<em>W</em>}，</p>
+<ol>
+<li><p><em>V</em>−<em>U</em> 中 dist 最小的顶点是 <em>E</em>。</p>
+</li>
+<li><p>从 <em>E</em> 出发，更新相邻顶点的 dist。</p>
+</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/18bf6b9ce78f61fa85ce4b6563b8d3508b2b0470.png" alt="img"></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>,<em>W</em>,<em>E</em>}，</p>
+<ol>
+<li>V<em>−</em>U<em> 中 dist最小的顶点是 </em>X*。</li>
+<li>从 <em>X</em> 出发，更新相邻顶点的 dist。</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/39744d7c33d595558c4c79205c7778b3ae476a01.png" alt="img"></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>,<em>W</em>,<em>E</em>,<em>X</em>}，</p>
+<ol>
+<li>V<em>−</em>U<em> 中 dist 最小的顶点是 </em>D*。</li>
+<li>从 <em>D</em> 出发，没有其他不在集合 <em>U</em> 中的顶点。</li>
+</ol>
+<p><a href="https://res.jisuanke.com/img/upload/20170428/ced8460a27686319529c898a1c7daec893bba313.png" target="_blank" rel="noopener"><img src="https://res.jisuanke.com/img/upload/20170428/ced8460a27686319529c898a1c7daec893bba313.png" alt="img"></a></p>
+<p>此时<em>U</em>=<em>V</em>，算法结束，单源最短路计算完毕。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1001</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">10001</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, w, next;</span><br><span class="line">    edge() &#123;&#125;</span><br><span class="line">    edge(<span class="keyword">int</span> _v, <span class="keyword">int</span> _w, <span class="keyword">int</span> _next): v(_v), w(_w), next(_next) &#123;&#125;</span><br><span class="line">&#125; e[M * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[N];</span><br><span class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>; <span class="comment">//链表大小</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    e[cnt] = edge(v, w, head[u]);</span><br><span class="line">    head[u] = cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert2</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    insert(u, v, w);</span><br><span class="line">    insert(v, u, w);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="keyword">sizeof</span> head);</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> dis[N];</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="literal">false</span>, <span class="keyword">sizeof</span> vis);</span><br><span class="line">    <span class="built_in">memset</span>(dis, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dis);</span><br><span class="line">    dis[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> min_dis = INF, min_index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123; <span class="comment">//j 从0 还是从 1 根据情况而定</span></span><br><span class="line">            <span class="keyword">if</span> (!vis[j] &amp;&amp; dis[j] &lt; min_dis) &#123;</span><br><span class="line">                min_index = j;</span><br><span class="line">                min_dis = dis[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (min_dis == <span class="number">-1</span>) &#123; <span class="comment">//图不是连通图</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[min_index] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = head[min_index]; ~j; j = e[j].next) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = e[j].v;</span><br><span class="line">            <span class="keyword">int</span> w = e[j].w;</span><br><span class="line">            <span class="keyword">if</span> (!vis[v] &amp;&amp; dis[v] &gt; dis[min_index] + w) &#123;</span><br><span class="line">                dis[v] = dis[min_index] + w;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">int</span> u, v, w;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">        insert2(u, v, w);</span><br><span class="line">    &#125;</span><br><span class="line">    dijkstra(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dis[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -432,7 +464,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+            <a href="/tags/图/" rel="tag"># 图</a>
           
         </div>
       
@@ -445,8 +477,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/18/19-04-18 六级词汇/" rel="next" title="六级词汇">
-                <i class="fa fa-chevron-left"></i> 六级词汇
+              <a href="/2019/04/26/19-04-26 图的基础/" rel="next" title="图的基础">
+                <i class="fa fa-chevron-left"></i> 图的基础
               </a>
             
           </div>
@@ -455,8 +487,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/19/19-04-19 六级写作/" rel="prev" title="六级写作">
-                六级写作 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/29/2019-04-29-阅读/" rel="prev" title="2019-04-29 阅读">
+                2019-04-29 阅读 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +643,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#绪论：初识机器学习"><span class="nav-number">1.</span> <span class="nav-text">绪论：初识机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#监督学习算法："><span class="nav-number">1.1.</span> <span class="nav-text">监督学习算法：</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#无监督学习（unsupervised）："><span class="nav-number">1.2.</span> <span class="nav-text">无监督学习（unsupervised）：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#单源最短路问题"><span class="nav-number">1.</span> <span class="nav-text">单源最短路问题</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#算法流程"><span class="nav-number">2.</span> <span class="nav-text">算法流程</span></a></li></ol></div>
             
 
           </div>

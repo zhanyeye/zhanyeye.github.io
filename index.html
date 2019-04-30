@@ -79,13 +79,16 @@
 
 
 
+<meta name="description" content="请不要让你的火焰在毫无希望的沼泽里熄灭 请不要让你灵魂当中的英雄在孤独的失望中死去。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="晔晔的博客">
 <meta property="og:url" content="https://zhanyeye2018.cn/index.html">
 <meta property="og:site_name" content="晔晔的博客">
+<meta property="og:description" content="请不要让你的火焰在毫无希望的沼泽里熄灭 请不要让你灵魂当中的英雄在孤独的失望中死去。">
 <meta property="og:locale" content="default">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="晔晔的博客">
+<meta name="twitter:description" content="请不要让你的火焰在毫无希望的沼泽里熄灭 请不要让你灵魂当中的英雄在孤独的失望中死去。">
 
 
 
@@ -291,6 +294,481 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/30/19-04-30-leetcode-题解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhanyeye">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晔晔的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/30/19-04-30-leetcode-题解/" itemprop="url">leetcode 题解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-30T17:32:39+08:00">
+                2019-04-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
+                    <span itemprop="name">LeetCode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h6 id="Two-Sum"><a href="#Two-Sum" class="headerlink" title="Two Sum"></a>Two Sum</h6><p>Easy</p>
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the <em>same</em> element twice.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [2, 7, 11, 15], target = 9,</span><br><span class="line"></span><br><span class="line">Because nums[0] + nums[1] = 2 + 7 = 9,</span><br><span class="line">return [0, 1].</span><br></pre></td></tr></table></figure>
+<ul>
+<li>注意每个元素只能使用一次</li>
+<li>两个坑：<ul>
+<li>当一个数和它的匹配相同是如 [3, 4]  target: 6;   6 - 3 = 3,但是这个3 不能再用了</li>
+<li>[3, 3]     target: 6;   第一个3不能用，但是第二个3 还可以用</li>
+</ul>
+</li>
+</ul>
+<p>先将数和索引作为键值对加入map，再去从map中找target - nums[i]</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//2019-04-30</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            mp[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> need = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (mp.count(need) &amp;&amp; mp[need] != i) &#123; <span class="comment">//注意顺序不能反过来！因为mp[need]若不存在，会被初始化为0</span></span><br><span class="line">                ans.push_back(i);</span><br><span class="line">                ans.push_back(mp[need]);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>The basic idea is to maintain a hash table for each element <code>num</code> in <code>nums</code>, using <code>num</code> as key and its index (<code>0</code>-based) as value. For each <code>num</code>, search for <code>target - num</code> in the hash table. If it is found and is not the same element as <code>num</code>, then we are done.</p>
+<p>The code is as follows. Note that each time before we add <code>num</code> to <code>mp</code>, we search for <code>target - num</code> first and so we will not hit the same element.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; twoSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">        <span class="built_in">map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> matching = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (mp.find(matching) != mp.end()) &#123;</span><br><span class="line">                <span class="keyword">return</span> &#123;mp[matching], i&#125;;</span><br><span class="line">            &#125;</span><br><span class="line">            mp[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/29/2019-04-29-阅读/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhanyeye">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晔晔的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/29/2019-04-29-阅读/" itemprop="url">2019-04-29 阅读</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-29T18:41:39+08:00">
+                2019-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/28/19-04-28-Dijkstra-最短路径算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhanyeye">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="晔晔的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/28/19-04-28-Dijkstra-最短路径算法/" itemprop="url">19-04-28 Dijkstra 最短路径算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-28T18:00:12+08:00">
+                2019-04-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h6 id="单源最短路问题"><a href="#单源最短路问题" class="headerlink" title="单源最短路问题"></a>单源最短路问题</h6><p>在带权图 <em>G</em>=(<em>V</em>,<em>E</em>) 中，每条边都有一个权值 <em>wi</em>，即边的长度。路径的长度为路径上所有边权之和。单源最短路问题是指：求源点 <em>s</em> 到图中其余各顶点的最短路径。</p>
+<p>如果用我们之前学习的 dfs 来解决单源最短路问题，效率上会很慢，能解决的问题的数据规模非常小。</p>
+<p>而 bfs 能解决的最短路问题只限制在边权为 1 的图上。对于边权不同的图，利用 bfs 求解最短路是错误的。</p>
+<blockquote>
+<p>解决单源最短路径问题常用 Dijkstra 算法，用于计算一个顶点到其他所有顶点的最短路径。Dijkstra 算法的主要特点是以起点为中心，逐层向外扩展（这一点类似于 bfs，但是不同的是，bfs 每次扩展一个层，但是 Dijkstra 每次只会扩展一个点），每次都会取一个最近点继续扩展，直到取完所有点为止</p>
+</blockquote>
+<p>非负权图 , 贪心思想</p>
+<h6 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h6><p>我们定义带权图 <em>G</em> 所有顶点的集合为 <em>V</em>，接着我们再定义<strong>已确定从源点出发的最短路径的顶点集合</strong>为 <em>U</em>，初始集合 <em>U</em> 为空，记<strong>从源点 <em>s</em> 出发到每个顶点 <em>v</em> 的距离</strong>为 <em>dist_v</em>，初始 <em>dist_s</em>=0，其他<em>dist_v</em>为∞。接着执行以下操作：</p>
+<ol>
+<li>从 <em>V</em>−<em>U</em> 中找出一个距离源点最近的顶点 <em>v</em>，将 <em>v</em> 加入集合 <em>U</em>。</li>
+<li>并用 dist_v 和点 <em>v</em> 连出的边来更新和 <em>v</em> 相邻的、不在集合 <em>U</em> 中的顶点的 dist，这一步称为松弛操作。</li>
+<li>重复步骤 1 和 2，直到 V=U或找不出一个从 <em>s</em> 出发有路径到达的顶点，算法结束。</li>
+</ol>
+<p>如果最后V !=U，说明有顶点无法从源点到达；否则每个 dist_i表示从 <em>s</em> 出发到顶点 <em>i</em> 的最短距离。</p>
+<p>Dijkstra 算法的时间复杂度为O(<em>V</em>^2)，其中 <em>V</em> 表示顶点的数量。</p>
+<blockquote>
+<p> 算法演示</p>
+<p>接下来，我们用一个例子来说明这个算法。</p>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/15072f3ce9f3e53579a6c2e02d87ef57d56cb3fe.png" alt="img"></p>
+<p>初始每个顶点的 dist 设置为无穷大 inf，源点 <em>M</em> 的 dist_M 设置为 0。</p>
+<ol>
+<li><p>当前<em>U</em>=∅，<em>V</em>−<em>U</em> 中 dist 最小的顶点是 M。</p>
+</li>
+<li><p>从顶点 M 出发，更新相邻点的 dist。</p>
+</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/02b208d277615bebf57d9a796e46bc96900181a3.png" alt></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>}，</p>
+<ol>
+<li><em>V</em>−<em>U</em> 中 dist 最小的顶点是 <em>W</em>。</li>
+<li>从 <em>W</em> 出发，更新相邻点的 dist。</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/a310ffeebb4ebd561660aeed7cf81db5448b98cc.png" alt="img"></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>,<em>W</em>}，</p>
+<ol>
+<li><p><em>V</em>−<em>U</em> 中 dist 最小的顶点是 <em>E</em>。</p>
+</li>
+<li><p>从 <em>E</em> 出发，更新相邻顶点的 dist。</p>
+</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/18bf6b9ce78f61fa85ce4b6563b8d3508b2b0470.png" alt="img"></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>,<em>W</em>,<em>E</em>}，</p>
+<ol>
+<li>V<em>−</em>U<em> 中 dist最小的顶点是 </em>X*。</li>
+<li>从 <em>X</em> 出发，更新相邻顶点的 dist。</li>
+</ol>
+<p><img src="https://res.jisuanke.com/img/upload/20170428/39744d7c33d595558c4c79205c7778b3ae476a01.png" alt="img"></p>
+<p>更新完毕，此时 <em>U</em>={<em>M</em>,<em>W</em>,<em>E</em>,<em>X</em>}，</p>
+<ol>
+<li>V<em>−</em>U<em> 中 dist 最小的顶点是 </em>D*。</li>
+<li>从 <em>D</em> 出发，没有其他不在集合 <em>U</em> 中的顶点。</li>
+</ol>
+<p><a href="https://res.jisuanke.com/img/upload/20170428/ced8460a27686319529c898a1c7daec893bba313.png" target="_blank" rel="noopener"><img src="https://res.jisuanke.com/img/upload/20170428/ced8460a27686319529c898a1c7daec893bba313.png" alt="img"></a></p>
+<p>此时<em>U</em>=<em>V</em>，算法结束，单源最短路计算完毕。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1001</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">10001</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> INF = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, w, next;</span><br><span class="line">    edge() &#123;&#125;</span><br><span class="line">    edge(<span class="keyword">int</span> _v, <span class="keyword">int</span> _w, <span class="keyword">int</span> _next): v(_v), w(_w), next(_next) &#123;&#125;</span><br><span class="line">&#125; e[M * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[N];</span><br><span class="line"><span class="keyword">int</span> cnt = <span class="number">0</span>; <span class="comment">//链表大小</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    e[cnt] = edge(v, w, head[u]);</span><br><span class="line">    head[u] = cnt++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert2</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    insert(u, v, w);</span><br><span class="line">    insert(v, u, w);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="keyword">sizeof</span> head);</span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> dis[N];</span><br><span class="line"><span class="keyword">bool</span> vis[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> u)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="literal">false</span>, <span class="keyword">sizeof</span> vis);</span><br><span class="line">    <span class="built_in">memset</span>(dis, <span class="number">0x3f</span>, <span class="keyword">sizeof</span> dis);</span><br><span class="line">    dis[u] = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> min_dis = INF, min_index = <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; j++) &#123; <span class="comment">//j 从0 还是从 1 根据情况而定</span></span><br><span class="line">            <span class="keyword">if</span> (!vis[j] &amp;&amp; dis[j] &lt; min_dis) &#123;</span><br><span class="line">                min_index = j;</span><br><span class="line">                min_dis = dis[j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (min_dis == <span class="number">-1</span>) &#123; <span class="comment">//图不是连通图</span></span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        vis[min_index] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = head[min_index]; ~j; j = e[j].next) &#123;</span><br><span class="line">            <span class="keyword">int</span> v = e[j].v;</span><br><span class="line">            <span class="keyword">int</span> w = e[j].w;</span><br><span class="line">            <span class="keyword">if</span> (!vis[v] &amp;&amp; dis[v] &gt; dis[min_index] + w) &#123;</span><br><span class="line">                dis[v] = dis[min_index] + w;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">int</span> u, v, w;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">        insert2(u, v, w);</span><br><span class="line">    &#125;</span><br><span class="line">    dijkstra(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dis[n] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/26/19-04-26 图的基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -387,28 +865,54 @@
             <h6 id="邻接矩阵"><a href="#邻接矩阵" class="headerlink" title="邻接矩阵"></a>邻接矩阵</h6><h6 id="基于-vector-邻接表"><a href="#基于-vector-邻接表" class="headerlink" title="基于 vector 邻接表"></a>基于 <code>vector</code> 邻接表</h6><p>带权邻接表</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, w;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="built_in">vector</span>&lt;node&gt; G[<span class="number">11</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert1</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    node temp;</span><br><span class="line">    temp.v = v;</span><br><span class="line">    temp.w = w;</span><br><span class="line">    G[u].push_back(temp);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert2</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    insert1(u, v, w);</span><br><span class="line">    insert1(v, u, w);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">input</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">        insert2(u, v, w);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">10</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; G[i].size(); j++) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"("</span> &lt;&lt; i &lt;&lt; <span class="string">", "</span> &lt;&lt; G[i][j].v &lt;&lt; <span class="string">", "</span> &lt;&lt; G[i][j].w &lt;&lt; <span class="string">")"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    input();</span><br><span class="line">    output();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h6 id="基于-链表-的邻接表"><a href="#基于-链表-的邻接表" class="headerlink" title="基于 链表 的邻接表"></a>基于 <code>链表</code> 的邻接表</h6><p>由于<code>vector</code>的常数较大，对于某些时间限制较为严格的情景，使用<code>vector</code>存储邻接表会导致程序有超时的风险</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">const int M = 1000000;</span><br><span class="line">const int N = 10000;</span><br><span class="line">struct edge &#123;</span><br><span class="line">    int v, d, next;</span><br><span class="line">&#125; e[M];</span><br><span class="line">int p[N], eid;</span><br><span class="line">void init() &#123;  // 初始化，在建图之前必须进行</span><br><span class="line">    memset(p, -1, sizeof(p));</span><br><span class="line">    eid = 0;</span><br><span class="line">&#125;</span><br><span class="line">void insert(int u, int v, int d) &#123;  // 插入单向边</span><br><span class="line">    e[eid].v = v;</span><br><span class="line">    e[eid].d = d;</span><br><span class="line">    e[eid].next = p[u];</span><br><span class="line">    p[u] = eid++;</span><br><span class="line">&#125;</span><br><span class="line">void insert2(int u, int v, int d) &#123;  // 插入双向边</span><br><span class="line">    insert(u, v, d);</span><br><span class="line">    insert(v, u, d);</span><br><span class="line">&#125;</span><br><span class="line">void output(int n) &#123;  // 输出整张图中的所有边</span><br><span class="line">    for (int i = 0; i &lt; n; i++) &#123;</span><br><span class="line">        for (int j = p[i]; j != -1; j = e[j].next) &#123;  // 遍历从 i 连出的所有边</span><br><span class="line">            cout &lt;&lt; i &lt;&lt; &quot;-&gt;&quot; &lt;&lt; e[j].v &lt;&lt; &quot;, &quot; &lt;&lt; e[j].d &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">1000000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> M = <span class="number">10000</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, w;</span><br><span class="line">    <span class="keyword">int</span> next; <span class="comment">//其实这里的next指向前驱</span></span><br><span class="line">    edge() &#123;&#125;</span><br><span class="line">    edge(<span class="keyword">int</span> _v, <span class="keyword">int</span> _w, <span class="keyword">int</span> _next): v(_v), w(_w), next(_next) &#123;&#125; </span><br><span class="line">&#125; e[M];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[N]; <span class="comment">//head[i] 表示从点 i </span></span><br><span class="line"><span class="keyword">int</span> cnt; <span class="comment">//记录边的数量，来作为边的索引</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="keyword">sizeof</span> head); <span class="comment">//开始链表为空，头指针都初始化为 -1</span></span><br><span class="line">    cnt = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入单向边</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;  </span><br><span class="line">    e[cnt] = edge(v, w, head[u]); <span class="comment">//新建一个终点为 v, 权值为 w 的边，插入到表示 u 的链表尾部</span></span><br><span class="line">    head[u] = cnt; <span class="comment">//将点 u 的 head指针移向后移一位，即刚刚插入的那个节点</span></span><br><span class="line">    cnt++; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 插入双向边</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert2</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123; </span><br><span class="line">    insert(u, v, w);</span><br><span class="line">    insert(v, u, w);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出整张图中的所有边: !注意：输出的顺序和插入的顺序是相反的</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">output</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="string">" : "</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = head[i]; ~j; j = e[j].next) &#123; <span class="comment">// 遍历从 i 连出的所有边</span></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"-&gt; &lt;["</span> &lt;&lt; e[j].v &lt;&lt; <span class="string">"],"</span> &lt;&lt; e[j].w &lt;&lt; <span class="string">"&gt;"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h5><h6 id="关系查询"><a href="#关系查询" class="headerlink" title="关系查询"></a>关系查询</h6><blockquote>
-<p>输入 <em>n</em> 对朋友关系，朋友关系是相互的。<em>a</em> 是 <em>b</em> 的朋友，<em>b</em> 也是 <em>a</em> 的朋友。<br>然后有 <em>m</em> 次查询，每次查询询问 <em>a</em> 和 <em>b</em> 是否是朋友。<br>输入格式<br>第一行输入一个整数 n<em>(1≤</em>n≤100)。<br>接下来 <em>n</em> 行，每行输入两个名字，表示一对朋友关系。<br>接下来一行输入一个整数 <em>m</em>(1≤<em>m</em>≤100)，表示 <em>m</em> 个查询。<br>接下来 <em>m</em> 行，每行输入两个名字，表示一次查询。<br>输入中的名字只包含大小写字母，长度不超过 20。<br>输出格式<br>对于每次查询，如果他们是朋友，输出一行<code>&quot;Yes&quot;</code>，否则输出一行<code>&quot;No&quot;</code>。<br>样例输入</p>
+<p>输入 <em>n</em> 对朋友关系，朋友关系是相互的。<em>a</em> 是 <em>b</em> 的朋友，<em>b</em> 也是 <em>a</em> 的朋友。（无向图）<br>然后有 <em>m</em> 次查询，每次查询询问 <em>a</em> 和 <em>b</em> 是否是朋友。<br>输入格式<br>第一行输入一个整数 n<em>(1≤</em>n≤100)。<br>接下来 <em>n</em> 行，每行输入两个名字，表示一对朋友关系。<br>接下来一行输入一个整数 <em>m</em>(1≤<em>m</em>≤100)，表示 <em>m</em> 个查询。<br>接下来 <em>m</em> 行，每行输入两个名字，表示一次查询。<br>输入中的名字只包含大小写字母，长度不超过 20。<br>输出格式<br>对于每次查询，如果他们是朋友，输出一行<code>&quot;Yes&quot;</code>，否则输出一行<code>&quot;No&quot;</code>。<br>样例输入</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; 5</span><br><span class="line">&gt; Mary Tom</span><br><span class="line">&gt; Islands Barty</span><br><span class="line">&gt; Andy Amy</span><br><span class="line">&gt; Islands Amy</span><br><span class="line">&gt; Tom Mary</span><br><span class="line">&gt; 3</span><br><span class="line">&gt; Amy Andy</span><br><span class="line">&gt; Islands Tom</span><br><span class="line">&gt; Islands Barty</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
 <p>样例输出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; Yes</span><br><span class="line">&gt; No</span><br><span class="line">&gt; Yes</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<ul>
+<li>设置一个全局序号</li>
+<li>用映射表将string 应设为 int</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> G[<span class="number">105</span>][<span class="number">105</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> ids; <span class="comment">//全局序号</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getId</span><span class="params">(<span class="built_in">string</span> str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (mp.count(str)) &#123;</span><br><span class="line">        <span class="keyword">return</span> mp[str];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        mp[str] = ++ids;</span><br><span class="line">        <span class="keyword">return</span> ids;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    </span><br><span class="line">    ids = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">        <span class="built_in">string</span> a, b;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">int</span> x = getId(a);</span><br><span class="line">        <span class="keyword">int</span> y = getId(b);</span><br><span class="line">        G[x][y] = <span class="literal">true</span>;</span><br><span class="line">        G[y][x] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="built_in">string</span> a, b;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">        <span class="keyword">int</span> x = getId(a);</span><br><span class="line">        <span class="keyword">int</span> y = getId(b);</span><br><span class="line">        <span class="keyword">if</span> (G[x][y]) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h6 id="葱头君的旅行"><a href="#葱头君的旅行" class="headerlink" title="葱头君的旅行"></a>葱头君的旅行</h6><blockquote>
-<p>蒜头君所在的城市可以抽象成为一个有 n(1 \le n \le 20000)<em>n</em>(1≤<em>n</em>≤20000) 个点和 m(1 \le m \le 50000)<em>m</em>(1≤<em>m</em>≤50000) 条无向边的地图。</p>
-<p>蒜头君住在 11 号点，他想进行一次环城市旅游。他从 11 点出发，每次沿着和 11 点相连的边中最短的边到下一个城市（如果有很多个最短的边，选择编号最小的走），到达下一个城市以后，还是沿着和这个城市相连的最短边走到下一个点（如果有很多个最短的边，选择编号最小的走），一直这样走下去，直到要走到一个已经走过的，就结束这次旅行。</p>
-<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>输入第一行两个整数 n<em>n</em>，m<em>m</em>。</p>
-<p>接下来 m<em>m</em> 行，每行输入三个整数 u,v(1 \le u, v \le n, u \ne v)<em>u</em>,<em>v</em>(1≤<em>u</em>,<em>v</em>≤<em>n</em>,<em>u</em>=<em>v</em>)，w(1 \le w \le 10^6)<em>w</em>(1≤<em>w</em>≤106)，表示有一条连接 u<em>u</em> 和 v<em>v</em> 长度为 w<em>w</em> 的无向边。</p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>输出一行若干个整数，依次表示蒜头君旅行经过的点，每两个数中间用一个空格隔开。</p>
-<h4 id="样例输入复制"><a href="#样例输入复制" class="headerlink" title="样例输入复制"></a>样例输入复制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 4 4</span><br><span class="line">&gt; 3 4 4</span><br><span class="line">&gt; 4 2 5</span><br><span class="line">&gt; 2 1 7</span><br><span class="line">&gt; 4 1 5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>蒜头君所在的城市可以抽象成为一个有 n<em>(1≤</em>n<em>≤20000) 个点和 m</em>(1≤<em>m</em>≤50000) 条无向边的地图。</p>
+<p>蒜头君住在 11 号点，他想进行一次环城市旅游。他从 1 点出发，每次沿着和 1 点相连的边中最短的边到下一个城市（如果有很多个最短的边，选择编号最小的走），到达下一个城市以后，还是沿着和这个城市相连的最短边走到下一个点（如果有很多个最短的边，选择编号最小的走），一直这样走下去，直到要走到一个已经走过的，就结束这次旅行。</p>
+<p>输入格式</p>
+<p>输入第一行两个整数 <em>n</em>，<em>m</em>。</p>
+<p>接下来 <em>m</em> 行，每行输入三个整数 u<em>,</em>v<em>(1≤</em>u<em>,</em>v<em>≤</em>n<em>,</em>u<em>!=</em>v<em>)，w</em>(1≤<em>w</em>≤10^6)，表示有一条连接 <em>u</em> 和 <em>v</em> 长度为 <em>w</em> 的无向边。</p>
+<p>输出格式</p>
+<p>输出一行若干个整数，依次表示蒜头君旅行经过的点，每两个数中间用一个空格隔开。</p>
+<p>样例输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt; 4 4</span><br><span class="line">&gt; 3 4 4</span><br><span class="line">&gt; 4 2 5</span><br><span class="line">&gt; 2 1 7</span><br><span class="line">&gt; 4 1 5</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
 <blockquote>
-<h4 id="样例输出复制"><a href="#样例输出复制" class="headerlink" title="样例输出复制"></a>样例输出复制</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1 4 3</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<p>样例输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; 1 4 3</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<ul>
+<li>遍历点的邻接点，找到权值最小的那一个</li>
+<li>设置一个bool数组vis 标记点是否被访问过</li>
+</ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> v, w;</span><br><span class="line">    node(<span class="keyword">int</span> _v, <span class="keyword">int</span> _w):v(_v), w(_w) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;node&gt; G[<span class="number">20000</span>];</span><br><span class="line"><span class="keyword">bool</span> vis[<span class="number">20000</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> w)</span> </span>&#123;</span><br><span class="line">    G[u].push_back(node(v, w));</span><br><span class="line">    G[v].push_back(node(u, w));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    vis[v] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">int</span> next = <span class="number">0</span>;</span><br><span class="line">    node min_node = G[v][<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G[v].size(); i++) &#123; <span class="comment">//找到一条最小的路径</span></span><br><span class="line">        <span class="keyword">if</span> (G[v][i].w &lt; min_node.w) &#123;</span><br><span class="line">            min_node = G[v][i];</span><br><span class="line">            next = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (vis[G[v][next].v]) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; v &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    func(G[v][next].v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="keyword">int</span> u, v, w;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">        insert(u, v, w);</span><br><span class="line">    &#125;</span><br><span class="line">    func(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="完全图判断"><a href="#完全图判断" class="headerlink" title="完全图判断"></a>完全图判断</h6><blockquote>
+<p>输入一个无向图，判断这个图是不是一个完全图。</p>
+<p>输入格式</p>
+<p>输入第一行两个整数 <em>n</em>(1≤<em>n</em>≤100) 和 <em>m</em>(1≤<em>m</em>≤20000)，表示输入点数和边数。</p>
+<p>接下来 <em>m</em> 行，每行输入两个整数 u<em>,</em>v<em>(1≤</em>u<em>,</em>v<em>≤</em>n)，表示 <em>u</em> 和 <em>v</em> 之前有一条无向边。</p>
+<p>输入中不存在自己到自己的边，但是可能会有重复的边。</p>
+<p>输出格式</p>
+<p>如果输入的图是一个完全图，输出<code>&quot;Yes&quot;</code>，否则输出<code>&quot;No&quot;</code>。</p>
+</blockquote>
+<ul>
+<li>无向图是完全图时有 <code>n*(n-1)/2</code>条边</li>
+<li>无向图的边(u, v) 和 (v, u) 是一样，所以插入集合前固定大小顺序</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">set</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; &gt; st;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    tmp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n, m;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">while</span> (m--) &#123;</span><br><span class="line">        <span class="keyword">int</span> u, v;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; u &gt;&gt; v;</span><br><span class="line">        <span class="keyword">if</span> (u &gt; v) &#123;</span><br><span class="line">            swap(u, v);</span><br><span class="line">        &#125;</span><br><span class="line">        st.insert(make_pair(u, v));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (st.size() == n * (n - <span class="number">1</span>) / <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Yes"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"No"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -769,6 +1273,15 @@
 <li>ago 以前，以往</li>
 <li>three days ago 三天前</li>
 </ul>
+<h6 id="定语从句"><a href="#定语从句" class="headerlink" title="定语从句"></a>定语从句</h6><blockquote>
+<p>The reform and opening-up policy in China has led to rapid economic growth, which has  given rise to a higher standard of living.</p>
+</blockquote>
+<ul>
+<li>导致 ： lead to ; result in ; give rise to</li>
+</ul>
+<blockquote>
+<p>In recent years, China is marked by raped economic growth and continuous technological innovation</p>
+</blockquote>
 
           
         
@@ -946,15 +1459,94 @@
 <p>毁于1900年，圆明园去年得以重建<br>Ruined in 1900，the Old Summer Place was rebuilt last year.</p>
 </blockquote>
 <h6 id="定语从句"><a href="#定语从句" class="headerlink" title="定语从句"></a>定语从句</h6><p>(从句也是一个完整的句子:有<strong>主</strong> + <strong>谓</strong>)</p>
-<p>构成方式：先行词 + 关系代词 + 从句</p>
+<p>(1)构成方式：先行词 + 关系代词 + 从句</p>
 <blockquote>
 <p>现在站在街角的那个女人可能是我的邻居<br>probably  adv. 很可能<br>corner  n. 角落<br>The woman who is standing at the street corner is probably my neighbor.</p>
 </blockquote>
 <blockquote>
-<p>张艺谋因其创造性的想象力而蜚声于海内外，与团队努力奋斗，推出了恢宏的体育盛宴开幕式。<br>ZYM, who has got a reputation for his creativity and imagination both at home and abroad, worked hard with has team to present the fantastic sport gala opening ceremony.</p>
+<p>张艺谋因其创造性的想象力而蜚声于海内外，与团队努力奋斗，推出了恢宏的体育盛宴开幕式。<br>ZYM, who has got a reputation for his creativity and imagination both at home and abroad, worked hard with his team to present the fantastic sport gala opening ceremony.</p>
 <p>get reputation    得到名誉<br>creativity and imagination   创造力和想象力<br>both at home and abroad  在国内外<br>opening ceremony   开幕式<br>gala     n. 祝贺，庆祝<br>非限制性定语从结局（加，），表明名词独一无二，物体用which,人用who</p>
 </blockquote>
-<h6 id="天龙八部"><a href="#天龙八部" class="headerlink" title="天龙八部"></a>天龙八部</h6>
+<blockquote>
+<p>我父亲造的那个屋子有20年的历史</p>
+<p>The house which my father built has a history of 20 years. (which 做宾语 可以省略)</p>
+<p>The house (which) was built by my father has a history of 20 years.</p>
+<p>the house built by my father</p>
+<ul>
+<li>有多少年的历史： have a history of </li>
+</ul>
+</blockquote>
+<blockquote>
+<p>这是我去年拜访的山村<br>This is the mountain village (which) I visited last year.<br>This is the mountain village <del>where</del> I visited last year. (X)</p>
+</blockquote>
+<p>(2) 关系代词在从句中做成分–主语或宾语，做宾语时可以省略。</p>
+<blockquote>
+<p>这就是我出生和长大的地方<br>grow up;  be raised;  be brought up; be bred;</p>
+<p>This is the place.<br>I was born and raised in the place.<br>This is the place which I was born and raised in.   （介词in 要提前）<br>This is the place in which I was born and raised .<br>This is the place where I was born and raised.  (不正式)</p>
+</blockquote>
+<p>(3)  “介词 + 关系代词which” 表示地点 = where; 表时间 = when</p>
+<blockquote>
+<p>我还记得我们相亲的那个冬日<br>I still remember the winter day.<br>we had our blind date on the winter day.<br>I still remember the winter day on  which we had our blind date. (on which = when)</p>
+</blockquote>
+<h6 id="非谓语动词"><a href="#非谓语动词" class="headerlink" title="非谓语动词"></a>非谓语动词</h6><p>n. 可以修饰 n. 的</p>
+<p>分词可以做定语的哦！！！</p>
+<p><code>doing</code>(主动),  <code>done</code>（被动）,  <code>to do</code></p>
+<blockquote>
+<p>坐在教室里的一些学生正在准备考试<br>Some students who are sitting in classroom are preparing for the coming exam.<br>Some students sitting(分词) in classroom are preparing for the coming(分词做定语) exam</p>
+</blockquote>
+<blockquote>
+<p>比赛中受伤的那条马腿马上就会康复<br>The leg which was hurt in the race will recover soon.<br>The leg hurt in the race will recover soon.</p>
+<ul>
+<li>recover  恢复</li>
+<li>race    /reɪs/  n.赛事，赛跑;   种；种族</li>
+</ul>
+</blockquote>
+<h6 id="倒装-（最后一段用）"><a href="#倒装-（最后一段用）" class="headerlink" title="倒装 （最后一段用）"></a>倒装 （最后一段用）</h6><blockquote>
+<p>对于一个年轻人，需要生吃俭用和辛苦工作，只有这样才能以较快的速度积累财富。<br>a young man needs to save up and work hard. he can accumulate fortune in a quicker way.<br>means  n.方法<br>mean  v. 意思;   adj.卑鄙</p>
+<p>only in this way +(注意之间没有’,’) 倒装（情态动词, be动词, 助主动 提前）<br>by this means = in this way</p>
+<p>A young man needs to save up and work hard. Only by this means can he gather a big fortune in a quicker way.</p>
+</blockquote>
+<blockquote>
+<p>只有这样，我们才能取得成功；只有这样，我们的社会才能变的更加和谐<br>Only by this way can we achieve sucess and Only by this means can our society  become more harmonious to live in.</p>
+</blockquote>
+<h6 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h6><p>It is/was + 被强调部分 + that/who + 句子剩余部分</p>
+<blockquote>
+<p>是团队合作最终最终使我们取得了成功</p>
+<p>Teamwork makes it possible for us to achieve success.</p>
+<p>It is teamwork that makes it possible for us to achieve success.</p>
+<p>make it possible for sb. to …</p>
+</blockquote>
+<blockquote>
+<p>I met your mother in the street this morning.<br>It was <strong>I</strong> who met your mother in the street this morning.<br>It was your mother who I mer in the street this morning.<br>It was in the street that I met …<br>It was this morning that I met your …</p>
+</blockquote>
+<blockquote>
+<p>It is respect for other that allows one to gain respect.</p>
+</blockquote>
+<h6 id="虚拟语气"><a href="#虚拟语气" class="headerlink" title="虚拟语气"></a>虚拟语气</h6><p><code>It is important/ vital/ essential/ urgent/ imperative/ necessary that ... (should)</code> 命令的口吻</p>
+<ul>
+<li>imperative  /ɪm’perətɪv/  adj.  必要的</li>
+</ul>
+<blockquote>
+<p>我们马上找到他，这是很紧急的。<br>It is essential that we should find him immediately.</p>
+</blockquote>
+<blockquote>
+<p>It is imperative that we should take actions to address the quandary.<br>quandary   n. 困惑；窘境；为难<br>address the quandary</p>
+</blockquote>
+<blockquote>
+<p>It is important that he be operated on at once.</p>
+</blockquote>
+<p>It is high time that </p>
+<ul>
+<li><code>+</code> 过去式</li>
+<li><code>+</code> should <code>+</code> do</li>
+</ul>
+<blockquote>
+<p>是时候我们应该客观看待自己<br>It is high time that we looked at ourselves objectively.</p>
+</blockquote>
+<blockquote>
+<p>It is high time that we took some measures.</p>
+</blockquote>
+
           
         
       
@@ -1465,457 +2057,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/16/19-04-16 翻译/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhanyeye">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="晔晔的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/16/19-04-16 翻译/" itemprop="url">翻译</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-16T21:15:25+08:00">
-                2019-04-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/英语/" itemprop="url" rel="index">
-                    <span itemprop="name">英语</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h6 id="的，-是，-有"><a href="#的，-是，-有" class="headerlink" title="的， 是，  有"></a>的， 是，  有</h6><ul>
-<li>的：介词of</li>
-<li>是：</li>
-<li>有：<strong>there be,  have,  with</strong></li>
-</ul>
-<h6 id="解决逗号"><a href="#解决逗号" class="headerlink" title="解决逗号"></a>解决逗号</h6><ul>
-<li>拆成若干个分句</li>
-<li>介词短语+句子  with</li>
-<li>句子+连词+句子</li>
-<li>使用非谓语动词</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/16/19-04-16 翻译/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/13/19-04-13 matlab-Chap1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhanyeye">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="晔晔的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/13/19-04-13 matlab-Chap1/" itemprop="url">Chap1 MATLAB 入门基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-13T13:39:23+08:00">
-                2019-04-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数学建模/" itemprop="url" rel="index">
-                    <span itemprop="name">数学建模</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h6 id="数据的输入"><a href="#数据的输入" class="headerlink" title="数据的输入"></a>数据的输入</h6><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% 换行分号，行末分号</span></span><br><span class="line">A = [<span class="number">1</span> <span class="number">2</span> <span class="number">3</span>; <span class="number">4</span> <span class="number">5</span> <span class="number">6</span>; <span class="number">7</span> <span class="number">8</span> <span class="number">10</span>]</span><br><span class="line"><span class="comment">% 加减乘除，幂</span></span><br><span class="line">a=<span class="number">29</span>*(<span class="number">2</span>+<span class="number">23</span>/<span class="number">3</span>)<span class="number">-5</span>^<span class="number">2</span></span><br><span class="line"><span class="comment">% 返回值=函数名（参数1，参数2，……）</span></span><br><span class="line">a=<span class="built_in">magic</span>(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/13/19-04-13 matlab-Chap1/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://zhanyeye2018.cn/2019/04/11/19-04-11 深搜的剪枝策略/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="zhanyeye">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="晔晔的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/04/11/19-04-11 深搜的剪枝策略/" itemprop="url">深搜的剪枝策略</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-11T10:26:59+08:00">
-                2019-04-11
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h6 id="可行性剪枝"><a href="#可行性剪枝" class="headerlink" title="可行性剪枝"></a>可行性剪枝</h6><p>搜索过程中，一旦发现某些状态无论如何都不能找到最终解，就可以将其“剪枝”了</p>
-<blockquote>
-<p>从1 ~ 30 选出8个数，使得和值为200</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/04/11/19-04-11 深搜的剪枝策略/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1956,7 +2097,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">zhanyeye</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-description motion-element" itemprop="description">请不要让你的火焰在毫无希望的沼泽里熄灭 请不要让你灵魂当中的英雄在孤独的失望中死去。</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1966,7 +2107,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1977,7 +2118,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
