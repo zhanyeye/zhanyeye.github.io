@@ -1,0 +1,14 @@
+{
+    "list": [
+       {
+          "name":"Dingtalk-app",
+          "url":"https://github.com/nju-softeng/dingtalk-app-server",
+          "desc":"Laboratory performance management system developed based on DingTalk"
+       },
+       {
+         "name":"DesSim-tool ",
+         "url":"https://github.com/zhanyeye/DesSim",
+         "desc":"A discrete event simulation tool "
+      }
+    ]
+ }
