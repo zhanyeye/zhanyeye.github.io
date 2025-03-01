@@ -76,6 +76,10 @@ weight = 4
   [params.comments]
     enabled = true
     engine = "utterances" #
+    repo = "zhanyeye/zhanyeye.github.io"
+    label = "comment"
+    them = "githb-light"
+
 
   [[params.social]]
     name = "github"
