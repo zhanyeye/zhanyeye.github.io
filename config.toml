@@ -75,10 +75,13 @@ weight = 4
 
   [params.comments]
     enabled = true
-    engine = "utterances" #
-    repo = "zhanyeye/zhanyeye.github.io"
-    label = "comment"
-    them = "githb-light"
+    engine = "giscus"
+    [params.comments.giscus]  
+      repo = "zhanyeye/zhanyeye.github.io"
+      repoid = "MDEwOlJlcG9zaXRvcnkxNzk4MDk2NzY="
+      category = "Comments"
+      categoryid = "DIC_kwDOCretjM4CndZR"
+      label = "comment"
 
 
   [[params.social]]
