@@ -16,6 +16,12 @@ jobs:
     - name: Checkout repository  
       uses: actions/checkout@v3  
 
+    - name: Display discussion event payload  
+      env:  
+        GITHUB_EVENT: ${{ toJson(github.event) }}  
+      run: |  
+        echo "Event Payload: $GITHUB_EVENT"  
+
     # Step 2: 运行 discussions-to-blog Action  
     - name: Sync Discussions to Markdown  
       uses: zhanyeye/discussions-to-blog@main
