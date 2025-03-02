@@ -42,9 +42,8 @@ weight = 4
     guessSyntax = true
     hl_Lines = ""
     lineNoStart = 1
-    lineNos = true
+    lineNos = false
     lineNumbersInTable = true
-    noClasses = true
     style = "dracula"
     tabWidth = 4
 
