@@ -20,3 +20,5 @@ Email: [zhanyeye@qq.com](mailto:zhanyeye@qq.com)
 2022 年 3 月 01 日 ---- 修复不显示标题的bug
 
 2022 年 3 月 01 日 ---- 配置域名  blog.read-me.top
+
+2025 年 3 月 01 日 ---- 回来啦，配置长期域名 blog.readme.fun
