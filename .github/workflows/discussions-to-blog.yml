@@ -1,0 +1,36 @@
+name: Sync Discussions to Blog  
+
+on:  
+  schedule:  
+    - cron: "0 * * * *"  # 每小时运行一次  
+  workflow_dispatch:       # 手动触发  
+  discussion:  
+    types: [created, edited, deleted]  
+
+jobs:  
+  sync-discussions:  
+    runs-on: ubuntu-latest  
+
+    steps:  
+    # Step 1: 检出仓库代码  
+    - name: Checkout repository  
+      uses: actions/checkout@v3  
+
+    # Step 2: 运行 discussions-to-blog Action  
+    - name: Sync Discussions to Markdown  
+      uses: zhanyeye/discussions-to-blog@main
+      with:  
+        github_token: ${{ secrets.GITHUB_TOKEN }}  
+        repo_owner: zhanyeye
+        repo_name: zhanyeye.github.io
+        category_id: DIC_kwDOCretjM4Cncfu
+        output_dir: content/posts  
+        delete_on_removed: "true"  
+
+    # Step 3: 提交更改  
+    - name: Commit and Push Changes  
+      uses: stefanzweifel/git-auto-commit-action@v4  
+      with:  
+        commit_message: "Sync Discussions to Markdown"  
+        branch: main  
+        file_pattern: content/posts/**/*
