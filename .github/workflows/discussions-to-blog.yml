@@ -1,8 +1,6 @@
 name: Sync Discussions to Blog  
 
-on:  
-  schedule:  
-    - cron: "0 * * * *"  # 每小时运行一次  
+on:
   workflow_dispatch:     # 手动触发  
   discussion:  
     types: [created, edited, deleted]  
@@ -29,4 +27,4 @@ jobs:
       with:  
         commit_message: "Sync Discussions to Markdown"  
         branch: main  
-        file_pattern: content/posts/**/*
+        file_pattern: '*.json *.md'
