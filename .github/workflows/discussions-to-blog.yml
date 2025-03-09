@@ -16,23 +16,12 @@ jobs:
     - name: Checkout repository  
       uses: actions/checkout@v3  
 
-    - name: Display discussion event payload  
-      env:  
-        GITHUB_EVENT: ${{ toJson(github.event) }}  
-      run: |  
-        echo "Event Payload: $GITHUB_EVENT"
-        echo "$GITHUB_EVENT" | base64  
-
     # Step 2: 运行 discussions-to-blog Action  
     - name: Sync Discussions to Markdown  
       uses: zhanyeye/discussions-to-blog@main
       with:  
-        github_token: ${{ secrets.GITHUB_TOKEN }}  
-        repo_owner: zhanyeye
-        repo_name: zhanyeye.github.io
-        category_id: DIC_kwDOCretjM4Cncfu
+        categories: Announcements, General
         output_dir: content/posts  
-        delete_on_removed: "true"  
 
     # Step 3: 提交更改  
     - name: Commit and Push Changes  
