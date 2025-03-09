@@ -1,6 +1,6 @@
 ---  
 title: "discussions-to-blog-action"  
-date: "2025-03-09T15:14:15Z"  
+date: "2025-03-09T15:20:37Z"  
 draft: false  
 discussion_id: "D_kwDOCretjM4AevIg"  
 ---  
@@ -24,9 +24,9 @@ A GitHub Action to sync GitHub Discussions from a specific category to Markdown 
 ```yaml  
 name: Sync Discussions to Blog  
 
-on:  
-  schedule:  
-    - cron: "0 * * * *"  
+on:
+  discussion:  
+    types: [created, edited, deleted]  
 
 jobs:  
   sync-discussions:  
@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@v3  
 
       - name: Sync Discussions  
-        uses: zhanyeye/discussions-to-blog@main
+        uses: zhanyeye/discussions-to-blog-action@main
         with:   
           categories： Announcements, General
           output_dir: content/posts
@@ -46,4 +46,5 @@ jobs:
         with:  
           commit_message: "Sync Discussions to Markdown"  
           branch: main  
-          file_pattern: content/posts/**/*
+          file_pattern: '*.json *.md'
+
