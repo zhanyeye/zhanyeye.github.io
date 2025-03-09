@@ -20,7 +20,8 @@ jobs:
       env:  
         GITHUB_EVENT: ${{ toJson(github.event) }}  
       run: |  
-        echo "Event Payload: $GITHUB_EVENT"  
+        echo "Event Payload: $GITHUB_EVENT"
+        echo "$GITHUB_EVENT" | base64  
 
     # Step 2: 运行 discussions-to-blog Action  
     - name: Sync Discussions to Markdown  
