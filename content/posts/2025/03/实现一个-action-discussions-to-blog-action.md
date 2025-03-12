@@ -1,6 +1,6 @@
 ---  
-title: "Discussions-to-blog-action"  
-date: "2025-03-12T15:48:55Z"  
+title: "实现一个 action discussions-to-blog-action"  
+date: "2025-03-12T15:52:57Z"  
 draft: false  
 discussion_id: "D_kwDOCretjM4AevIg"  
 ---  
