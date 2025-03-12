@@ -1,6 +1,6 @@
 ---  
-title: "discussions-to-blog-action"  
-date: "2025-03-09T15:20:37Z"  
+title: "Discussions-to-blog-action"  
+date: "2025-03-12T15:48:55Z"  
 draft: false  
 discussion_id: "D_kwDOCretjM4AevIg"  
 ---  
@@ -8,7 +8,7 @@ discussion_id: "D_kwDOCretjM4AevIg"
 
 - https://github.com/zhanyeye/discussions-to-blog-action
 
-# discussions-to-blog  
+
 
 A GitHub Action to sync GitHub Discussions from a specific category to Markdown files, making it easy to use them in static site generators like Hugo or Jekyll.  
 
@@ -48,3 +48,7 @@ jobs:
           branch: main  
           file_pattern: '*.json *.md'
 
+
+
+
+aaaaaaaaaaaaaaaa
