@@ -16,15 +16,9 @@ jobs:
 
     # Step 2: 运行 discussions-to-blog Action  
     - name: Sync Discussions to Markdown  
-      uses: zhanyeye/discussions-to-blog-action@main
-      with:  
-        categories: Announcements, General
-        output_dir: content/posts  
-
-    # Step 3: 提交更改  
-    - name: Commit and Push Changes  
-      uses: stefanzweifel/git-auto-commit-action@v4  
-      with:  
-        commit_message: "Sync Discussions to Markdown"  
-        branch: main  
-        file_pattern: content/posts/**/* content/posts/*
+      uses: zhanyeye/discussions-to-blog-action@composite-action
+      with:   
+        categories: "Announcements, General"
+        output_dir: "content/posts"
+        branch: main
+        commit_message: "Sync Discussions to Markdown"
