@@ -16,7 +16,7 @@ jobs:
 
     # Step 2: 运行 discussions-to-blog Action  
     - name: Sync Discussions to Markdown  
-      uses: zhanyeye/discussions-to-blog-action@composite-action
+      uses: zhanyeye/discussions-to-blog-action@main
       with:   
         categories: "Announcements, General"
         output_dir: "content/posts"
