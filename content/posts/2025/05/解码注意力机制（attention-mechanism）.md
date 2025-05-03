@@ -1,6 +1,6 @@
 ---
 title: "解码注意力机制（Attention Mechanism）"
-date: "2025-05-03T04:09:50Z"
+date: "2025-05-03T04:20:05Z"
 draft: false
 discussion_id: "D_kwDOCretjM4AfkUh"
 ---
@@ -11,7 +11,8 @@ discussion_id: "D_kwDOCretjM4AfkUh"
 
 > 注意力机制就是帮助模型在处理这样的句子时，能够更好地关注到关键的信息，而忽略冗余的信息。
 
-![Snipaste_2025-05-03_12-01-21](https://github.com/user-attachments/assets/511fd567-5a31-4f3c-9b7a-582862705dc0)
+![Snipaste_2025-05-03_12-01-21](https://github.com/user-attachments/assets/a85c3fcd-a560-40b6-b309-5060a33f7605)
+
 - **克服RNN的局限** : 注意力机制帮助解决循环神经网络在处理长序列时性能下降和计算效率低的问题。
 
 - **跨领域广泛应用且性能优越** : 在自然语言处理、计算机视觉和跨模态任务中，注意力机制成为领先的模型架构，显著提升了多项任务的表现。
