@@ -1,6 +1,6 @@
 ---
 title: "飞牛NAS部署Dnsmasq - 局域网内搭建一台 DNS 服务器"
-date: "2025-11-28T13:37:47Z"
+date: "2025-11-28T13:39:58Z"
 draft: false
 discussion_id: "D_kwDOCretjM4AjDT-"
 ---
@@ -15,7 +15,7 @@ discussion_id: "D_kwDOCretjM4AjDT-"
 <img width="1114" height="656" alt="image" src="https://github.com/user-attachments/assets/8ec35dd8-39ff-4b71-8445-9f47d9fb7a1b" />
 
 
-3. 配置
+4. 配置
 ### 场景 A：家庭 NAS，自定义几个域名
 
 ```conf
@@ -88,4 +88,33 @@ address=/nas.local/192.168.1.100
 
 log-queries
 log-facility=/var/log/dnsmasq.log
+```
+
+5. 验证
+```
+# 1. 检查容器运行状态
+docker ps | grep dnsmasq
+
+# 2. 查看启动日志
+docker logs dnsmasq
+
+# 3. 检查端口监听
+ss -lun | grep :53
+
+# 4. 查看配置文件是否正确加载
+docker exec -it dnsmasq cat /etc/dnsmasq.conf | head -20
+
+# 5. 测试自定义域名
+dig @192.168.1.10 nas.home +short
+# 期望：192.168.1.100
+
+# 6. 测试公网域名
+dig @192.168.1.10 [www.google.com](http://www.google.com/) +short
+# 期望：一个 IP 地址
+
+# 7. 查看实时 DNS 查询日志
+docker logs -f dnsmasq
+
+# 8. 测试 TCP DNS（可选）
+dig @192.168.1.10 nas.home +tcp +short
 ```
