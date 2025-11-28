@@ -1,12 +1,13 @@
 ---
 title: "go语言指针"
-date: "2025-11-28T11:59:27Z"
+date: "2025-11-28T12:01:01Z"
 draft: false
 discussion_id: "D_kwDOCretjM4AjCoL"
 ---
 
 
-[Uploading Go语言指针精讲：内存管理的_指路人_.pptx…]()
+[Go语言指针精讲：内存管理的_指路人_.pptx](https://github.com/user-attachments/files/23822965/Go._._.pptx)
+
 
 
 ## 指针相关的运算符
