@@ -1,13 +1,15 @@
 ---
 title: "go语言指针"
-date: "2025-11-27T16:22:42Z"
+date: "2025-11-28T11:59:27Z"
 draft: false
 discussion_id: "D_kwDOCretjM4AjCoL"
 ---
 
-## 指针相关的运算符
 
-在高级语言中最小的数据类型也要占用1个字节
+[Uploading Go语言指针精讲：内存管理的_指路人_.pptx…]()
+
+
+## 指针相关的运算符
 
 <img width="1916" height="1072" alt="image" src="https://github.com/user-attachments/assets/56abd4ef-6751-451c-9c03-31464896d7bc" />
 
